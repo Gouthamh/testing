@@ -1,0 +1,48 @@
+package com.bulks.endpoints;
+
+import org.testng.annotations.Test;
+
+import com.playload.bulkrequestplayload;
+
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+
+import static io.restassured.RestAssured.*;
+import static io.restassured.matcher.ResponseAwareMatcher.*;
+import static org.hamcrest.Matcher.*;
+
+import java.io.File;
+
+import javax.management.InvalidApplicationException;
+
+public class UserRequests {
+
+	public static Response createuser(bulkrequestplayload payload) {
+
+		Response response = given()
+					.contentType(ContentType.JSON)
+					.accept(ContentType.JSON)
+					.body(payload)
+				.when()
+					.post(Routers.mysql);
+
+		return response;
+
+	}
+	static File file1 = new File("C:/dap/bulk/create/dynamic services for ui.csv");
+	@Test
+	public class void formdata() {
+		
+		Response response = given()
+				.multiPart("file",file1)
+				.formParam("bulkId", 831)
+				.when()
+				.post("https://dap.pe-lab3.bdc-rancher.tecnotree.com/dapBulkProcess/notification-bulk-service/fileUploadToProcessBulkData");
+		int statuscode = response.statusCode();
+		String responsebody = response.getBody().toString();
+		System.out.println(statuscode);
+		System.out.println(responsebody);
+	}
+	
+	
+}

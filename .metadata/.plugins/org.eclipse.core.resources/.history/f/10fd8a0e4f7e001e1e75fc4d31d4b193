@@ -1,0 +1,43 @@
+
+public class test09 {
+
+	static void reserve() {
+		String name = "goutham";
+
+		System.out.println(name);
+
+		char[] ch = name.toCharArray();
+
+		for (int i = name.length() - 1; i >= 0; i--) {
+			System.out.print(ch[i]);
+
+		}
+	}
+	static void swap() {
+		int a =10;
+		int b=5;
+		int temp=0;
+		System.out.println();
+		System.out.println(a +" "+b);
+		temp=a;
+		a=b;
+		b=temp;
+		System.out.println(a +" "+b);
+		
+	}
+	static void swap1() {
+		int a = 4;
+		int b = 8;
+		System.out.println(a +" "+b);
+		
+		System.out.println(a+b-a);
+		
+	}
+
+	public static void main(String[] args) {
+		reserve();
+		swap();
+		swap1();
+	}
+
+}

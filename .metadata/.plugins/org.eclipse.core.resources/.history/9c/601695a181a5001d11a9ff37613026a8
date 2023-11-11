@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mongodb.MongoClientURI;
+
+public class java12 {
+
+	public static void main(String[] args) {
+		//def fetchFile1234(String MongoURI, String Database, String Collection,String key,String value) {
+
+			String mongoURI="mongodb://DAP_IAT:DAP_IAT@172.20.21.212:27017,172.20.21.216:27017/DAP_IAT?replicaSet=repl";
+			MongoClientURI uri = new MongoClientURI(mongoURI);
+			MongoClient mongodb = new MongoClient(uri);
+			MongoDatabase database = mongodb.getDatabase("DAP_IAT");
+			MongoCollection<Document> coll = database.getCollection("DAP_BULK_MONGO_PROTOCOL_OPERATIONS_FILE");
+			long count1= coll.count();
+			//System.out.println("count1__"+count1);
+
+		/*	FindIterable<Document> condition = coll.find();
+			for (Document document1 : condition) {
+				String jsosnvalue =document1.toJson();
+				//System.out.println("jsosnvalue__" + jsosnvalue);
+				JSONObject json123 = (JSONObject) JSONSerializer.toJSON(jsosnvalue);
+				//System.out.println("json123__" + json123);
+				Object object = JsonPath.read(json123, key);
+				String arrayvalue = object.toString();
+				ArrayList<String> arraylist = new ArrayList<String>();
+				arraylist.add(arrayvalue);
+				//System.out.println("arraylist__"+arraylist.toString());
+				for(String i : arraylist) {
+					//System.out.println("i__" + i);
+					if(i.equals(value)) {
+						System.out.println("i__"+i);
+						return i
+						//break;
+					}
+
+
+
+
+				}
+
+
+			}*/
+			mongodb.close();
+
+
+		}
+		
+	}
+
+}

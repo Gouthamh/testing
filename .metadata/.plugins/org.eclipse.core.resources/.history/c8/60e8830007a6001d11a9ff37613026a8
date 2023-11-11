@@ -1,0 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class java12 {
+
+	public static void main(String[] args) {
+		//def fetchFile1234(String MongoURI, String Database, String Collection,String key,String value) {
+	}
+
+
+}

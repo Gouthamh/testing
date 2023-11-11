@@ -1,0 +1,171 @@
+package sftpconnection;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Vector;
+
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpATTRS;
+
+public class sftp_connection {
+
+	public static void main(String[] args) {
+
+		System.out.println(false);
+		// String files = null;
+		String localPath = "";
+		String sftpPath = "";
+		String sftpHost = "172.20.21.57";
+		String sftpPort = "31703";
+		String sftpUserName = "admin";
+		String sftpPassword = "admin";
+		String sshkey = "172.20.21.57 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCfeK+wXukXepUaNZmSTGEjDeUTmJdJlMepkUZA6m5p6tzJa77dIAEx1DOdS+uYCOQWJeguACk204p8Qg83w2Is/YtfzoprK9suIBuZLgDoFT+rSXWptVR3weHQqmwh9aN3AwcRN2ql+czgT3SjIMOahz9peLeRKe+20TiOLv8+c0h8+IQxkqX7qrY0sYrrZyJsQ9HQVrLGEb9RLmOgyKPnqCDIRFH72+nYSpcN+k7Yxc8GiL+qUtKs/GZwBYW2oQMVJR/7XeFVfMYgKBbh/R4L9hYztJX5jCn6iovAwhMB9bd0KqDHhJsiU39R8JoUeGXkW83j3/dZdO1QvTY+AQHmZRW7mZ5MInWeT6BwAJqYICfibSfD/0FYXG7fonPAlzAl6lDiMyBpmZnZOMn0vF8JgHPu1AUxgPrcbNbLhwl19qfz2GnIHoDfg2h8IPXhASh56oIGFSbREIeTYjx0JkJgkZsbGKMYKnEjbSApMUNfhUu16/khm+/tptDqmMDnYmU2E4SQ+Jici9FD1bGO2pDUS2Z6NQz5HyzQyhHPnSH/eQnowRc+YnXa15npey/EEsKE/NGEtS/xk1DXsqEk30wMZYEfwEga5YDCCwIEgzYpHIgF2MmCGYnb/AgtjPRQEYvAWz42S2yD1FNnmsxGxTvOfg60+PuzJW5l2l6zrzvPxw==";
+
+		try {
+			JSch jsch = new JSch();
+
+			Session session = jsch.getSession(sftpUserName, sftpHost, Integer.valueOf(sftpPort));
+			System.out.println("------------");
+			// jsch.setKnownHosts("knownhost");
+			jsch.setKnownHosts(new ByteArrayInputStream(sshkey.getBytes()));
+			// jsch.setKnownHosts(new ByteArrayInputStream(sshkey.getBytes()));
+			// session.getConfig(sshkey.getBytes);
+			session.setPassword(sftpPassword);
+			session.connect();
+			Channel channel = session.openChannel("sftp");
+			ChannelSftp channelSftp = (ChannelSftp) channel;
+			channelSftp.connect();
+			System.out.println("------------connect-----------" + channelSftp.isConnected());
+			ChannelSftp channelsftpconnection = (ChannelSftp) channelSftp;
+
+			System.out.println("channelsftpconnection----------" + channelsftpconnection);
+			channelsftpconnection.cd("/bulk-store/");
+			System.out.println("remove----------");
+			// channelsftpconnection.rm("notification-5425819.tar.gz");
+
+			System.out.println("remove----------");
+
+			Vector<ChannelSftp.LsEntry> ls = channelSftp.ls("/bulk-store/");
+			System.out.println("------------ls.size()-----------" + (ls.size() - 2));
+			System.out.println("------------files-----------");
+
+			/*
+			 * InputStream inputStream=channelSftp.get(
+			 * "/bulk-store/name2023-04-101-05-19-47148000019.csv"); BufferedReader reader =
+			 * new BufferedReader(new InputStreamReader(inputStream));
+			 * //System.out.println("-------reader-----"+reader.readLine()); String files =
+			 * null; while((files=reader.readLine()) != null) {
+			 * System.out.println("files---------"+files);
+			 * 
+			 * }
+			 */
+
+			/*
+			 * ls.size(); System.out.println("------------ls.size()-----------"+ls.size());
+			 * ls.clear();
+			 * System.out.println("------------ls.removeAllElements()-----------");
+			 * System.out.println("------------ls.removeAllElements()-----------"+ls.isEmpty
+			 * ()); System.out.println();
+			 */
+			for (ChannelSftp.LsEntry entry : ls) {
+
+				// System.out.println("entry.getFilename()------>" + entry.getFilename());
+				// .out.println("**************entry.getFilename()123------>"+ls+"##########################"+entry);
+				SftpATTRS attrs = channelSftp.lstat("/bulk-store/" + entry.getFilename());
+
+				String sftppermission = attrs.getPermissionsString();
+
+				// System.out.println("attrs.getPermissionsString()------>" + sftppermission);
+
+				// System.out.println("<-------------------------------------------------------------------->");
+
+				InputStream inputStream = channelSftp.get("/bulk-store/" + entry.getFilename());
+				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)); //
+				// System.out.println("-------reader-----" + reader.readLine());
+
+				/*
+				 * while (((files = reader.readLine()) != null)) {
+				 * System.out.println("files---------" + files);
+				 * 
+				 * }
+				 */
+
+				ArrayList<String> array = new ArrayList();
+				array.add(attrs.getPermissionsString());
+
+				array.forEach((e) -> {
+					 //System.out.println("foreach---->" + e);
+					 
+					 
+					 if(e=="drwxrwxrwx" && e=="drwxr-xr-x") {
+						 System.out.println("if ----> drwxrwxrwx and drwxr-xr-x");
+					 }
+					 else if(e=="-rw-r--r--")
+					 {
+						 System.out.println("else if ---->-rw-r--r--");
+					 }
+					 else
+					 {
+						 System.out.println("else ---->-rw-r--r--");
+					 }
+					//String test = e;
+					/*
+					 * if (test == "-rw-r--r--") {
+					 * 
+					 * System.out.println("inside the if condition---->"+test); } else {
+					 * System.out.println("inside the else condition---->"+test);
+					 * 
+					 * try { String files = null; while (((files = reader.readLine()) != null)) {
+					 * System.out.println("files---------" + files);
+					 * 
+					 * } } catch (IOException e1) { // TODO Auto-generated catch block
+					 * e1.printStackTrace(); }
+					 * 
+					 * }
+					 */
+				});
+
+				/*
+				 * Iterator<String> permission = array.iterator();
+				 * 
+				 * while (permission.hasNext()) { System.out.
+				 * println("-----------------------enter to arry while loop---------------------------------------------"
+				 * );
+				 * 
+				 * 
+				 * }
+				 */
+
+			}
+
+			/*
+			 * Vector filelist = channelSftp.ls("/bulk-store/ProccessedFiles/"); for (int i
+			 * = 0; i < filelist.size(); i++) {
+			 * System.out.println("filelist.get(i).toString()---->" +
+			 * filelist.get(i).toString()); }
+			 */
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
+		// TODO Auto-generated method stub
+
+	}
+
+	private static Object print(Object n) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

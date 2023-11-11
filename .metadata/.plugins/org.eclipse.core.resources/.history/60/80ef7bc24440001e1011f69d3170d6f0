@@ -1,0 +1,37 @@
+package com.bulkservice;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import com.bulks.endpoints.UserRequests;
+import com.playload.bulkrequestplayload;
+
+import io.restassured.response.Response;
+
+public class BulkDBType {
+	
+	bulkrequestplayload offset;
+	UserRequests user ;
+	int number = 0;
+	@BeforeClass
+	
+	public void setdata() {
+		offset = new bulkrequestplayload();
+		offset.setOffset(number);
+		user = new UserRequests();
+		
+	}
+	
+	@Test
+	public void testcase() {
+		Response response = user.createuser(offset);
+		response.then().log().all();
+		
+		Assert.assertEquals(response.getStatusCode(), 200);
+		System.out.println(response.getBody());
+		
+		
+	}
+
+}

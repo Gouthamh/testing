@@ -1,0 +1,43 @@
+package mongo123.mongo234;
+
+import java.util.Iterator;
+
+import org.bson.Document;
+
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+public class App {
+
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+        String MongoURI = "mongodb://DAP_IAT:DAP_IAT@172.20.21.212:27017,172.20.21.216:27017/DAP_IAT?replicaSet=repl";
+        String Collection = "NOTIFICATION_EMAIL_HISTORY";
+        String Database = "DAP_IAT";
+
+        String mongoURI = MongoURI;
+        MongoClientURI connectionString = new MongoClientURI(mongoURI);
+        MongoClient mongoClient = new MongoClient(connectionString);
+        MongoDatabase database = mongoClient.getDatabase(Database);
+
+        // Get all documents from collection
+        MongoCollection<Document> collection = database.getCollection(Collection);
+        FindIterable<Document> iterDoc = collection.find();
+        long value = collection.count();
+
+        int i = 1;
+        // Getting the iterator
+        Iterator<Document> it = iterDoc.iterator();
+        // Print all documents
+        while (it.hasNext()) {
+            System.out.println(it.next());
+            i++;
+        }
+        System.out.println("********************number of files:" + value);
+        mongoClient.close();
+
+    }
+}

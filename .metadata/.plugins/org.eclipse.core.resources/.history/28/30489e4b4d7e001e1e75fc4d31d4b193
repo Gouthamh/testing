@@ -1,0 +1,24 @@
+
+public class test09 {
+	
+	void reserve() {
+String name = "goutham";
+		
+		System.out.println(name);
+		
+		
+		char[] ch = name.toCharArray();
+		
+		for(int i=name.length()-1;i>=0;i--) {
+			System.out.print(ch[i]);
+			
+		}
+	}
+	
+	public static void main(String[] args) {
+		 reserve();
+	}
+		
+	
+
+}

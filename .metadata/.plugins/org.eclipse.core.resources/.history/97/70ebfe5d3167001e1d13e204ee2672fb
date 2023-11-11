@@ -1,0 +1,63 @@
+package com.bulk.services.utilities;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class MysqlDB {
+
+    public Connection getConnection(String jdbcUrl, String username, String password)
+            throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        return DriverManager.getConnection(jdbcUrl, username, password);
+    }
+
+    public int getCountFromTable(Connection connection, String tableName) throws SQLException {
+        String query = "SELECT COUNT(*) AS recordCount FROM " + tableName;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt("recordCount");
+            }
+        }
+
+        return 0; // Default value if no records found
+    }
+
+    public void readDataFromTable(Connection connection, String tableName) throws SQLException {
+        String query = "SELECT * FROM " + tableName;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                // Retrieve and process each row of data here
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                // Add more columns as needed
+
+                System.out.println("ID: " + id + ", Name: " + name);
+                // Print or process the retrieved data as needed
+            }
+        }
+    }
+
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        String jdbcUrl = "jdbc:mysql://your_database_url/your_database_name";
+        String username = "your_username";
+        String password = "your_password";
+        String tableName = "your_table_name";
+
+        MysqlDB mysqlDB = new MysqlDB();
+        Connection connection = mysqlDB.getConnection(jdbcUrl, username, password);
+        long count = mysqlDB.getCountFromTable(connection, tableName);
+        System.out.println("Record Count: " + count);
+
+        // Read and process data from the table
+        mysqlDB.readDataFromTable(connection, tableName);
+
+        // Close the database connection when done
+        connection.close();
+    }
+}

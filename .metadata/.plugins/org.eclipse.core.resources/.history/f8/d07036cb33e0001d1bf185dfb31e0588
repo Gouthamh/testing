@@ -1,0 +1,15 @@
+package sftpconnection;
+
+public class ramdom {
+
+	public static void main(String[] args) {
+		
+		int min=0;
+		int max=100;
+		int ramdomnumber = (int)((Math.random());
+		System.out.println("ramdon"+ramdomnumber);
+		// TODO Auto-generated method stub
+
+	}
+
+}

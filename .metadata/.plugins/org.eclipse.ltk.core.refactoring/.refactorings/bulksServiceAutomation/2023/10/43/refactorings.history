@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;com.bulks.endpoints.UserRequests.createuser1(...)&apos; to &apos;Post_Bulk_Service&apos;&#x0D;&#x0A;- Original project: &apos;bulksServiceAutomation&apos;&#x0D;&#x0A;- Original element: &apos;com.bulks.endpoints.UserRequests.createuser1(...)&apos;&#x0D;&#x0A;- Renamed element: &apos;com.bulks.endpoints.UserRequests.Post_Bulk_Service(...)&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="true" description="Rename method &apos;createuser1&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;com.bulks.endpoints{UserRequests.java[UserRequests~createuser1~QString;~QString;" name="Post_Bulk_Service" references="true" stamp="1698306144766" version="1.0"/>
+</session>

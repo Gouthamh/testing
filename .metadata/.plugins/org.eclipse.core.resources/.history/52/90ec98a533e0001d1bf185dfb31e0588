@@ -1,0 +1,10 @@
+package sftpconnection;
+
+public class ramdom {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

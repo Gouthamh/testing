@@ -1,0 +1,31 @@
+package com.bulkservice;
+
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import com.bulks.endpoints.UserRequests;
+import com.playload.bulkrequestplayload;
+
+import io.restassured.response.Response;
+
+public class BulkDBType {
+	
+	bulkrequestplayload offset;
+	UserRequests user ;
+	
+	@BeforeClass
+	
+	public void setdata() {
+		offset.setOffset(0);
+		
+	}
+	
+	@Test
+	public void testcase() {
+		Response response = user.createuser(offset);
+		response.then().log().all();
+		
+		
+	}
+
+}

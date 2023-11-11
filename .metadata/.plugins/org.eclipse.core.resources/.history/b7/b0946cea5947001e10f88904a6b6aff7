@@ -1,0 +1,92 @@
+package com.bulkservice;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.both;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.equalToObject;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import com.bulk.services.utilities.MongoDb;
+import com.bulk.services.utilities.RecordCountExample;
+import com.bulks.endpoints.Routers;
+import com.bulks.endpoints.UserRequests;
+import com.playload.bulkrequestplayload;
+
+import io.restassured.response.Response;
+import java.sql.Connection;
+
+public class BulkDBType {
+
+	bulkrequestplayload offset = new bulkrequestplayload();
+	UserRequests user = new UserRequests();
+
+	long count = 0;
+	//int recordcount = 0;
+	long count2 =0;
+
+	@BeforeClass
+	public void mysqlcount() throws ClassNotFoundException, SQLException {
+		RecordCountExample mysqlcounts = new RecordCountExample();
+		Connection connection = mysqlcounts.getConnection(Routers.jdbcUrl, Routers.username, Routers.password);
+		count = mysqlcounts.getCountFromTable(connection, Routers.UploadTest);
+		System.out.println("@BeforeClass recordcount---" + count);
+	}
+	@BeforeClass
+	public void initalmongocount() throws InterruptedException {
+		MongoDb mongocount = new MongoDb();
+		mongocount.MongoDBChecker(Routers.mongoURL, Routers.databasename, "MONGODB_FORM_DATA");
+		count2 = mongocount.countRecordsWithNotificationId();
+		System.out.println("@BeforeMethod recordcount--" + count2);
+		mongocount.close();
+	}
+	
+	@BeforeMethod
+	public void MongoDbBeforecount() throws InterruptedException {
+		MongoDb mongocount = new MongoDb();
+		mongocount.MongoDBChecker(Routers.mongoURL, Routers.databasename, "NOTIFICATION_EMAIL_HISTORY");
+		count = mongocount.countRecordsWithNotificationId();
+		System.out.println("@BeforeMethod--" + count);
+		//Assert.assertEquals(count, count);
+
+		mongocount.close();
+	}
+
+	
+	public void mysqlpostbulkservice() throws IOException {
+		String offset = "Offset.json";
+		Response response = user.createuser1(offset,"mysql-post-bulk-service");
+		response.then().body("response", equalTo("mysql-post-bulk-service triggered Successfully")).statusCode(200);
+		System.out.println("mysqlpostbulkservice");
+	}
+	
+	@Test(priority = 1)
+	public void mongodbbulkservice() throws IOException {
+		String offset = "Offset.json";
+		Response response = user.createuser1(offset,"mongodb-bulk-service");
+		response.then().body("response", equalTo("mongodb-bulk-service triggered Successfully")).statusCode(200);
+		System.out.println("mongodb-bulk-service");
+		
+	}
+
+	@AfterMethod
+	public void MongoDbAftercount() throws InterruptedException {
+
+		MongoDb mongocount = new MongoDb();
+		mongocount.MongoDBChecker(Routers.mongoURL, Routers.databasename, "NOTIFICATION_EMAIL_HISTORY");
+		long count1 = mongocount.countRecordsWithNotificationId();
+		System.out.println("@AfterMethod--" + count1);
+		
+		//Assert.assertEquals(count + count2, count1);
+		mongocount.close();
+	}
+
+}

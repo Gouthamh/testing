@@ -1,0 +1,15 @@
+
+public class test04 {
+	public static void solutions(String s) {
+		System.out.println(s);
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		String s= "()[]{}";
+		solutions(s);
+	
+	}
+
+}

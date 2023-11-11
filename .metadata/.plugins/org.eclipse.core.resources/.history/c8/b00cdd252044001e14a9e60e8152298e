@@ -1,0 +1,31 @@
+package com.bulks.endpoints;
+
+import org.testng.annotations.Test;
+
+import com.playload.bulkrequestplayload;
+
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+
+import static io.restassured.RestAssured.*;
+import static io.restassured.matcher.ResponseAwareMatcher.*;
+import static org.hamcrest.Matcher.*;
+
+import javax.management.InvalidApplicationException;
+
+public class UserRequests {
+
+	public static Response createuser(bulkrequestplayload payload) {
+
+		Response response = given()
+					.contentType(ContentType.JSON)
+					.accept(ContentType.JSON)
+					.body(payload)
+				.when()
+					.post(Routers.mysql);
+
+		return response;
+
+	}
+	
+}

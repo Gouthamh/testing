@@ -1,0 +1,31 @@
+package com.rest;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+
+public class framework {
+
+
+
+	    public static void main(String[] args) {
+	        // Set base URL
+	        RestAssured.baseURI = "https://api.example.com";
+
+	        // Send GET request and get response
+	        Response response = RestAssured.given()
+	                .when()
+	                .get("/endpoint")
+	                .then()
+	                .extract().response();
+
+	        // Print response body
+	        String responseBody = response.getBody().asString();
+	        System.out.println("Response Body: " + responseBody);
+
+	        // Print status code
+	        int statusCode = response.getStatusCode();
+	        System.out.println("Status Code: " + statusCode);
+	    }
+	
+
+}

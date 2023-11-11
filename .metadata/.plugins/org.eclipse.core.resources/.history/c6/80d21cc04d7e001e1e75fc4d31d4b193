@@ -1,0 +1,30 @@
+
+public class test09 {
+
+	static void reserve() {
+		String name = "goutham";
+
+		System.out.println(name);
+
+		char[] ch = name.toCharArray();
+
+		for (int i = name.length() - 1; i >= 0; i--) {
+			System.out.println(ch[i]);
+
+		}
+	}
+	static void swap() {
+		int a =10;
+		int b=5;
+		int temp=0;
+		System.out.println(a +" "+b);
+		
+		
+	}
+
+	public static void main(String[] args) {
+		reserve();
+		swap();
+	}
+
+}

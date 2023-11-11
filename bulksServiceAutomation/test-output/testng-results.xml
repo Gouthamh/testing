@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-09-06T16:39:18 IST" name="Default suite" finished-at="2023-09-06T16:39:38 IST" duration-ms="20025">
+    <groups>
+    </groups>
+    <test started-at="2023-09-06T16:39:18 IST" name="Default test" finished-at="2023-09-06T16:39:38 IST" duration-ms="20025">
+      <class name="com.bulkservice.BulkDBType">
+        <test-method is-config="true" signature="initialMongoCount()[pri:0, instance:com.bulkservice.BulkDBType@293a5bf6]" started-at="2023-09-06T16:39:18 IST" name="initialMongoCount" finished-at="2023-09-06T16:39:21 IST" duration-ms="2857" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialMongoCount -->
+        <test-method is-config="true" signature="mongoDbBeforeCount()[pri:0, instance:com.bulkservice.BulkDBType@293a5bf6]" started-at="2023-09-06T16:39:21 IST" name="mongoDbBeforeCount" finished-at="2023-09-06T16:39:25 IST" duration-ms="4273" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mongoDbBeforeCount -->
+        <test-method signature="mongoDbBulkService()[pri:1, instance:com.bulkservice.BulkDBType@293a5bf6]" started-at="2023-09-06T16:39:25 IST" name="mongoDbBulkService" finished-at="2023-09-06T16:39:29 IST" duration-ms="4305" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mongoDbBulkService -->
+        <test-method is-config="true" signature="mongoAfterCount()[pri:0, instance:com.bulkservice.BulkDBType@293a5bf6]" started-at="2023-09-06T16:39:29 IST" name="mongoAfterCount" finished-at="2023-09-06T16:39:31 IST" duration-ms="2123" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mongoAfterCount -->
+        <test-method is-config="true" signature="mongoDbBeforeCount()[pri:0, instance:com.bulkservice.BulkDBType@293a5bf6]" started-at="2023-09-06T16:39:31 IST" name="mongoDbBeforeCount" finished-at="2023-09-06T16:39:35 IST" duration-ms="4192" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mongoDbBeforeCount -->
+        <test-method signature="mongoDbBulkService1()[pri:2, instance:com.bulkservice.BulkDBType@293a5bf6]" started-at="2023-09-06T16:39:35 IST" name="mongoDbBulkService1" finished-at="2023-09-06T16:39:36 IST" duration-ms="112" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mongoDbBulkService1 -->
+        <test-method is-config="true" signature="mongoAfterCount()[pri:0, instance:com.bulkservice.BulkDBType@293a5bf6]" started-at="2023-09-06T16:39:36 IST" name="mongoAfterCount" finished-at="2023-09-06T16:39:38 IST" duration-ms="2064" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mongoAfterCount -->
+      </class> <!-- com.bulkservice.BulkDBType -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
