@@ -1,0 +1,26 @@
+
+public class test10 {
+
+	public static int main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int number = 15;
+		int temp=0;
+		int sum=0;
+		if(number==0) {
+			return 0;
+		}
+		else if(number)
+		System.out.println(temp);
+		System.out.println(temp1);
+		for(int i=0;i<number;i++) {
+			sum=temp+temp1;
+			temp=temp1;
+			temp1=sum;
+			System.out.println(sum);
+		}
+		
+
+	}
+
+}

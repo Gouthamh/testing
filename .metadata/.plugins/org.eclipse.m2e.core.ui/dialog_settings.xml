@@ -2,16 +2,10 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="RestAssured"/>
-			<item value="com.restAssure"/>
 		</list>
 		<list key="name">
-			<item value="RestAssured"/>
-			<item value="restAssureFramework"/>
 		</list>
 		<list key="artifactId">
-			<item value="RestAssured"/>
-			<item value="com.restAssure"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

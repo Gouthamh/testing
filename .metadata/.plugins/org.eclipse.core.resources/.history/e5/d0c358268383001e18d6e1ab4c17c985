@@ -1,0 +1,25 @@
+
+public class test10 {
+
+	public static int main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int number = 1;
+		int temp=0;
+		int sum=0;
+		int temp1=1;
+		
+		System.out.println(temp);
+		System.out.println(temp1);
+		for(int i=0;i<number;) {
+			sum=temp+temp1;
+			temp=temp1;
+			temp1=sum;
+			return sum;
+		}
+		return sum;
+		
+
+	}
+
+}

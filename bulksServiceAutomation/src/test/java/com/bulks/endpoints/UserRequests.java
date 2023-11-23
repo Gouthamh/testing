@@ -29,7 +29,11 @@ public class UserRequests {
 		
 		String mysql = bulkendpoints.triggerBulkService("mysql-post-bulk-service");
 
-		Response response = given().contentType(ContentType.JSON).accept(ContentType.JSON).body(payload).when()
+		Response response = given()
+				.contentType(ContentType.JSON)
+				.accept(ContentType.JSON)
+				.body(payload)
+				.when()
 				.post(mysql);
 
 		return response;

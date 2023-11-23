@@ -21,6 +21,7 @@ public class MongoDb {
 
 	}
 
+
 	@SuppressWarnings("deprecation")
 	public long countRecordsWithNotificationId() throws InterruptedException {
 		Thread.sleep(2000);

@@ -1,0 +1,40 @@
+
+public class Palindrome {
+	
+	static void palindrome(String name){
+		int len = name.length();
+		Boolean flag = false;
+		for(int i=0;i<len;i++) {
+			if(name.charAt(i)!=name.charAt(len-1-i)) {
+				flag=true;
+				break;
+			}
+		}
+		if(false==flag) {
+			System.out.println("true");
+		}
+		else {
+			System.out.println("false");
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		palindrome("wow");
+		
+		
+//		String name = "Goutham";
+//		String res="";
+//		//System.out.println(name);
+//		int len = name.length();
+//		for (int i = len - 1; i >= 0; i--) {
+//			System.out.println(name.toLowerCase().charAt(i));
+//			res=res+name.charAt(i);
+//		}
+//		System.out.println(res.toLowerCase().equalsIgnoreCase(name));
+//	}}
+	}
+}
+
+	

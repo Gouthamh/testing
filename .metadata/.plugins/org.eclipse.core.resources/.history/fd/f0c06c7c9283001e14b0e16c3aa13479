@@ -1,0 +1,31 @@
+
+public class Palindrome {
+	
+	static void palindrome(String name){
+		int len = name.length();
+		for(int i=0;i<len;i++) {
+			System.out.print(name.charAt(i));
+			System.out.print(name.charAt(len-1-i));
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		palindrome("goutham");
+		
+		
+//		String name = "Goutham";
+//		String res="";
+//		//System.out.println(name);
+//		int len = name.length();
+//		for (int i = len - 1; i >= 0; i--) {
+//			System.out.println(name.toLowerCase().charAt(i));
+//			res=res+name.charAt(i);
+//		}
+//		System.out.println(res.toLowerCase().equalsIgnoreCase(name));
+//	}}
+	}
+}
+
+	

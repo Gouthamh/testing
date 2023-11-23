@@ -18,6 +18,8 @@ import com.bulks.endpoints.UserRequests;
 import com.playload.bulkrequestplayload;
 
 import io.restassured.response.Response;
+import io.restassured.response.Response;
+
 
 public class BulkDBType {
 	long val = 1;
@@ -91,4 +93,21 @@ public class BulkDBType {
 //		System.out.println("@AfterMethod mysqlAfterCount"+count.mongotestcount("MONGODB_FORM_DATA"));
 //		
 //	}
+	
+	public void test() {
+		String offset1 = "Offset.json";
+		try {
+			Response response = user.Post_Bulk_Service(offset1, "notification-bulk-service");
+			response.
+			then()
+			.statusCode(200)
+			.log().all()
+			.rootPath("response",is("notification-bulk-service triggered Successfully"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+	}
 }
